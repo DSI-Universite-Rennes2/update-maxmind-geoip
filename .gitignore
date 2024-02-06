@@ -1,0 +1,3 @@
+*.mmdb
+*.key
+GeoIP.conf
