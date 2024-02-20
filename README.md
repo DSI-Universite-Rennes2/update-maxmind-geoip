@@ -50,8 +50,9 @@ Database editions :
   Default value :<br>
   ```MAXMIND_EDITIONS=('GeoLite2-ASN' 'GeoLite2-City' 'GeoLite2-Country')```
 
-Other : 
+Other :
 - VERBOSE                    : active verbosity
+- MAXMIND_HOST               : change destination host ; if you host your own [clone of Maxmind's GeoIP local databases update API endpoint](https://github.com/DSI-Universite-Rennes2/maxmind-geoip-update-server/).
 
 ### Config via GeoIP.conf formatted file
 
@@ -68,8 +69,9 @@ By default : Try to use /etc/GeoIP.conf
 #### With env variables only
 
 ```bash
-$ MAXMIND_LICENSE_KEY="TOTOISWITHYOU" MAXMIND_ACCOUNT_ID="123123" DRYRUN=1 VERBOSE=1 ./update-maxmind-geoip.sh
+$ MAXMIND_HOST="my.host.tld" MAXMIND_LICENSE_KEY="TOTOISWITHYOU" MAXMIND_ACCOUNT_ID="123123" DRYRUN=1 VERBOSE=1 ./update-maxmind-geoip.sh
 Updating MaxMind GeoIP DBs : 
+    - Update URI               : https://my.host.tld/geoip/databases/%s/update
     - Try config file          : /etc/GeoIP.conf
     - Editions                 : GeoLite2-ASN GeoLite2-City GeoLite2-Country
     - Destination              : /home/me/update-maxmind-geoip
@@ -83,6 +85,7 @@ DRYRUN is defined or not equal to 0. Exiting
 ```bash
 $ DRYRUN=1 VERBOSE=1 ./update-maxmind-geoip.sh /tmp/GeoIP.conf /tmp
 Updating MaxMind GeoIP DBs : 
+    - Update URI               : https://updates.maxmind.com/geoip/databases/%s/update
     - Try config file          : /tmp/GeoIP.conf
     - Editions                 : GeoLite2-ASN GeoLite2-City GeoLite2-Country
     - Destination              : /tmp

@@ -172,7 +172,8 @@ function updateMaxmindDB() {
 # -----------------------------------------------------------------------------
 VERBOSE=${VERBOSE:-0}
 MAXMIND_EDITIONS=('GeoLite2-ASN' 'GeoLite2-City' 'GeoLite2-Country')
-MAXMIND_DOWNLOAD_URI="https://updates.maxmind.com/geoip/databases/%s/update"
+MAXMIND_HOST=${MAXMIND_HOST:-"updates.maxmind.com"}
+MAXMIND_DOWNLOAD_URI="https://${MAXMIND_HOST}/geoip/databases/%s/update"
 DEST_DIR="${MAXMIND_DATADIR:-$LDIR}"
 
 if [ -n "$1" ] && [ -f "$1" ]
@@ -196,6 +197,7 @@ foundAccountID
 foundLicenseKey
 
 log "Updating MaxMind GeoIP DBs : "
+log "    - Update URI               : $MAXMIND_DOWNLOAD_URI"
 log "    - Try config file          : $GEOIP_CONFIG_FILE"
 log "    - Editions                 : ${MAXMIND_EDITIONS[*]}"
 log "    - Destination              : $DEST_DIR"
