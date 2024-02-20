@@ -100,6 +100,7 @@ DRYRUN is defined or not equal to 0. Exiting
 `/etc/cron.d/maxmind-autoupdate`
 ```bash 
 MAILTO=your@email
+https_proxy=your.proxy.tld
 # m h  dom mon dow  user   command
 0   6  *   *   *    root   /usr/local/sbin/update-maxmind-geoip.sh /etc/GeoIP.conf /usr/share/
 
